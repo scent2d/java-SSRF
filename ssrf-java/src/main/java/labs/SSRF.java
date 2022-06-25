@@ -96,6 +96,8 @@ public class SSRF {
     public @ResponseBody String secureRender (@RequestParam Map<String,String> data) {                
         try { 
             String url = data.get("url");
+            
+            // SSRF 화이트리스트 도메인 설정
             URL newURL = new URL(url);
             String[] domains = {"raw.githubusercontent.com"};
             boolean validatedDomain = Arrays.stream(domains).anyMatch(newURL.getHost()::equals);            
